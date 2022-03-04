@@ -13,7 +13,7 @@ function App() {
     */
 
   // Why is useState set to true?
-    // When called with a s value the state will be set (to what you have put it to) and the component will re-render.
+    // When called with a value the state will be set (to what you have put it to) and the component will re-render.
     // When refresh runs and the value is 'false' the function setRefresh is called into action
     // with this useState it will always expect a boolean value
   const [refresh, setRefresh] = useState(true);
@@ -38,24 +38,51 @@ function App() {
 
       // What is 'const data'
         // the variable in which the object is being stored (read below)
-      // What is .jons()
-        // .json() tells JavaSvript to change data into JavaScript Objects so that your code can read that data 
+      // What is .json()
+        // .json() tells JavaSvript to change data into JavaScript Objects so that your JS code can read that data
       const data = await fetchRes.json();
       //console.log(data);
       
       // What is data.message doing?
-        // is is accessing the .mesasge property of data, which is the api that has been turned into a JS object so that the code can be read
+        // It is accessing the .mesasge property of data, which is the api that has been turned into a JS object so that the code can be read
       const dog = data.message
       //console.log(dog);
       
       // why call setNewDog with (dog)?
+        // setNewDog is the new state that the code will go to once it has been re-rendered
+        // We are using (dog) to tell it that that is the data we want used
       setNewDog(dog);
     }
-    //why call res()?
+    // Why call res()?
+      // We now have to call the function so that when JS reads top-to-bottom it knows we want to input the res() function
+      // We are effectively ending the cycle
     res()
 
   // what is [refresh]?
+    // An optional array of dependencies, without it the useEffect can not read any arrays and access any data
   }, [refresh]);
+
+  const [border, setBorder] = useState("white")
+
+  useEffect(() => {
+      const changeBorder = () => {
+          // change the value of circleBackgroundColor
+          setBorder(getRandomColor())
+        }
+  })
+/*
+  let [circleBackgroundColor, setCircleBackgroundColor] = useState("lightblue");
+
+  useEffect(()=>{
+       // change the bg-color of the body after every render
+       document.body.style.backgroundColor = getRandomColor();
+    })
+
+    const changeCircleBackgroundColor = ()=>{
+      // change the value of circleBackgroundColor
+      setCircleBackgroundColor(getRandomColor())
+    }
+*/
 
   return (
     <div className="App">
@@ -68,7 +95,7 @@ function App() {
           </button>
         </div>
         <ol id="dogCard"></ol>
-        <img id="doggo" alt="A happy dog!" src={newDog} />
+        <img id="doggo" alt="A happy dog!" src={newDog} onmouseover={setBorder} />
       </div>
     </div>
   );
