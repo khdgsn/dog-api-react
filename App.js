@@ -28,7 +28,8 @@ function App() {
     // What is 'const res'?
       // It is a function that you can call
     // what does async do?
-      //
+      // The purpose of async/await is to simplify the syntax necessary to consume promise-based APIs.
+      //The behavior of async/await is similar to combining generators and promises.
     const res = async () => {
       // What is 'const fetchRes'
         // the varable that is set to fetch which is where you are pulling the data from using an API
@@ -62,14 +63,20 @@ function App() {
     // An optional array of dependencies, without it the useEffect can not read any arrays and access any data
   }, [refresh]);
 
+  // create a variable and set the state so the border is white
   const [border, setBorder] = useState("white")
 
   useEffect(() => {
-      const changeBorder = () => {
-          // change the value of circleBackgroundColor
-          setBorder(getRandomColor())
+      const changeBorder = async () => {
+          // change the value of border
+          if(border === "white"){
+            setBorder()
+          }
+          
         }
-  })
+      changeBorder()
+  }, [border])
+  
 /*
   let [circleBackgroundColor, setCircleBackgroundColor] = useState("lightblue");
 
