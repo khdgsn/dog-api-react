@@ -70,26 +70,13 @@ function App() {
       const changeBorder = async () => {
           // change the value of border
           if(border === "white"){
-            setBorder()
-          }
-          
+            setBorder("black")
+          } 
         }
+      // We now have to call the function so that when JS reads top-to-bottom it knows we want to input the function
       changeBorder()
+      // An optional array of dependencies, without it the useEffect can not read any arrays and access any data
   }, [border])
-  
-/*
-  let [circleBackgroundColor, setCircleBackgroundColor] = useState("lightblue");
-
-  useEffect(()=>{
-       // change the bg-color of the body after every render
-       document.body.style.backgroundColor = getRandomColor();
-    })
-
-    const changeCircleBackgroundColor = ()=>{
-      // change the value of circleBackgroundColor
-      setCircleBackgroundColor(getRandomColor())
-    }
-*/
 
   return (
     <div className="App">
@@ -102,7 +89,7 @@ function App() {
           </button>
         </div>
         <ol id="dogCard"></ol>
-        <img id="doggo" alt="A happy dog!" src={newDog} onmouseover={setBorder} />
+        <img id="doggo" alt="A happy dog!" src={newDog} onMouseOver={setBorder} />
       </div>
     </div>
   );
