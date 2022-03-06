@@ -29,7 +29,7 @@ function App() {
       // It is a function that you can call
     // what does async do?
       // The purpose of async/await is to simplify the syntax necessary to consume promise-based APIs.
-      //The behavior of async/await is similar to combining generators and promises.
+      // The behavior of async/await is similar to combining generators and promises.
     const res = async () => {
       // What is 'const fetchRes'
         // the varable that is set to fetch which is where you are pulling the data from using an API
@@ -66,15 +66,19 @@ function App() {
 
 
   // create a variable and set the state so the border is white
-  const [border, setBorder] = useState("")
+    // It returns a pair of values: the current state (border) (#000000, black) and a function (setBorder) that updates it
+  const [border, setBorder] = useState('#000000')
 
-  // useEffet lets you perform side effects in function components
+  // useEffect lets you perform side effects in function components
   useEffect(() => {
-      // What is 'const changeBorder'?
-        // It is a function that you can call
+      console.log('use effect ran')
+    // What is 'const changeBorder'?
+        // It is a function that you can call to update the state (from black to white)
       const changeBorder = () => {
           // change the value of border
-          setBorder("black")
+          const newBorder = '#ffffff'
+          setBorder(newBorder)
+          console.log('here')
         }
       // We now have to call the function so that when JS reads top-to-bottom it knows we want to input the function
       changeBorder()
@@ -92,7 +96,7 @@ function App() {
           </button>
         </div>
         <ol id="dogCard"></ol>
-        <img id="doggo" alt="A happy dog!" src={newDog} onMouseOver={setBorder} />
+        <img id="doggo" alt="A happy dog!" style={{border: '5px solid #000000'}} src={newDog} onMouseEnter={() => setBorder()} />
       </div>
     </div>
   );
