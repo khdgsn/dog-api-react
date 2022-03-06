@@ -63,15 +63,18 @@ function App() {
     // An optional array of dependencies, without it the useEffect can not read any arrays and access any data
   }, [refresh]);
 
-  // create a variable and set the state so the border is white
-  const [border, setBorder] = useState("white")
 
+
+  // create a variable and set the state so the border is white
+  const [border, setBorder] = useState("")
+
+  // useEffet lets you perform side effects in function components
   useEffect(() => {
-      const changeBorder = async () => {
+      // What is 'const changeBorder'?
+        // It is a function that you can call
+      const changeBorder = () => {
           // change the value of border
-          if(border === "white"){
-            setBorder("black")
-          } 
+          setBorder("black")
         }
       // We now have to call the function so that when JS reads top-to-bottom it knows we want to input the function
       changeBorder()
