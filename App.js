@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
 import "./App.css";
+import { useNavigate } from "react-router-dom";
 
 function App() {
   const [refresh, setRefresh] = useState(true);
   const [newDog, setNewDog] = useState("");
   const [border, setBorder] = useState("#000");
   // const [arr, newArr] = useState([]);
+  let navigate = useNavigate();
 
   // function to change border
   const changeBorder = () => {
@@ -58,7 +60,7 @@ function App() {
           <button
           id="backButton"
           type="button"
-          >
+          onClick={() => navigate(-1)} >
             Go Back!
           </button>
         </div>
