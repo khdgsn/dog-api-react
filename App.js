@@ -11,6 +11,7 @@ function App() {
     React will remember its current value between re-renders, and provide the most recent one to our function.
     If we want to update the current refresh, we can call setRefresh.
     */
+    // a differnt way to declare a variable clld usedStae give it an init value and it has a setter func, thats how we change the value
 
   // Why is useState set to true?
     // When called with a value the state will be set (to what you have put it to) and the component will re-render.
@@ -22,14 +23,20 @@ function App() {
     // With this useState it will always expect a string value
   const [newDog, setNewDog] = useState("");
 
+  const [border, setBorder] = useState('#000000')
+
   // What is useEffect?
     // The Effect Hook lets you perform side effects in function components
+    // pull parts of functions that you've already got
+    // something that happens at start when it hasn't been set up and/OR it can be done depending on a variable held inside a array
   useEffect(() => {
     // What is 'const res'?
       // It is a function that you can call
     // what does async do?
       // The purpose of async/await is to simplify the syntax necessary to consume promise-based APIs.
-      // The behavior of async/await is similar to combining generators and promises.
+        /* A Promise is a proxy for a value not necessarily known when the promise is created. 
+        It allows you to associate handlers with an asynchronous action's eventual success 
+        value or failure reason. */
     const res = async () => {
       // What is 'const fetchRes'
         // the varable that is set to fetch which is where you are pulling the data from using an API
@@ -54,36 +61,52 @@ function App() {
         // We are using (dog) to tell it that that is the data we want used
       setNewDog(dog);
     }
+
+    const changeBorder = () => {
+      // change the value of border
+      const newBorder = '#000000'
+      setBorder(newBorder)
+      console.log('here')
+      
+    }
+  // We now have to call the function so that when JS reads top-to-bottom it knows we want to input the function
+  changeBorder()
     // Why call res()?
       // We now have to call the function so that when JS reads top-to-bottom it knows we want to input the res() function
       // We are effectively ending the cycle
-    res()
+    
+      res()
 
   // what is [refresh]?
     // An optional array of dependencies, without it the useEffect can not read any arrays and access any data
+    // looks for data ad re-runs if any data changes
   }, [refresh]);
 
 
 
   // create a variable and set the state so the border is white
     // It returns a pair of values: the current state (border) (#000000, black) and a function (setBorder) that updates it
-  const [border, setBorder] = useState('#000000')
 
   // useEffect lets you perform side effects in function components
-  useEffect(() => {
-      console.log('use effect ran')
-    // What is 'const changeBorder'?
-        // It is a function that you can call to update the state (from black to white)
-      const changeBorder = () => {
-          // change the value of border
-          const newBorder = '#ffffff'
-          setBorder(newBorder)
-          console.log('here')
-        }
-      // We now have to call the function so that when JS reads top-to-bottom it knows we want to input the function
-      changeBorder()
-      // An optional array of dependencies, without it the useEffect can not read any arrays and access any data
-  }, [border])
+  // useEffect(() => {
+  //     console.log('use effect ran')
+  //   // What is 'const changeBorder'?
+  //       // It is a function that you can call to update the state (from black to white)
+  //     const changeBorder = () => {
+  //         // change the value of border
+  //         const newBorder = '#FFFFFF'
+  //         setBorder(newBorder)
+  //         console.log('here')
+
+  //         // enter document -> img -> style -> border, set it as newBorder variable
+  //         // ERROR - cannot read properties of undefinded
+  //         // document.img.style.border = newBorder
+          
+  //       }
+  //     // We now have to call the function so that when JS reads top-to-bottom it knows we want to input the function
+  //     changeBorder()
+  //     // An optional array of dependencies, without it the useEffect can not read any arrays and access any data
+  // })
 
   return (
     <div className="App">
@@ -96,7 +119,7 @@ function App() {
           </button>
         </div>
         <ol id="dogCard"></ol>
-        <img id="doggo" alt="A happy dog!" style={{border: '5px solid #000000'}} src={newDog} onMouseEnter={() => setBorder()} />
+        <img id="doggo" alt="A happy dog!" style={{borderColor:{border}}} src={newDog} />
       </div>
     </div>
   );
